@@ -37,7 +37,7 @@ export const klondikeInit = function() {
       (i * (i + 1)) / 2 + i + 1
     );
   }
-  this.decks[7] = shuffledDeck.slice(29);
+  this.decks[7] = shuffledDeck;
   this.decks.forEach((deck, index) => {
     if (index != 7) deck[deck.length - 1].isDown = false;
   });
@@ -80,10 +80,9 @@ export const isMovable = function(card, deck) {
 export const checkFoundation = function(foundation, card) {
   if (foundation == "" || card.rank == "A") {
     return true;
-  }
-  if (
+  } else if (
     foundation.suit == card.suit &&
-    processRank(card.rank) - processRank(foundation.rank) == 1
+    processRank(card) - processRank(foundation.rank) == 1
   ) {
     return true;
   } else {
